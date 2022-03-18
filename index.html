@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        let serviceUrl = 'https://gw.a9e.services';
+
+        window.onload = () => {
+            let button = document.getElementById('status');
+            let results = document.getElementById('results');
+            let status;
+            button.addEventListener('click', () => {
+                fetch(serviceUrl)
+                    .then((response) => {
+                        status = response.status;
+                        results.innerHTML = '<li>Service Status: ' + status + '</li>';
+                    }).catch((error) => {
+                    console.error(error);
+                });
+            })
+        }
+
+    </script>
+    <style>
+        div {
+            border: 1px solid #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <button type="button" id="status">Check Status</button>
+        <h4>Results</h4>
+        <ul id="results"> </ul>
+    </div>
+</div>
+</body>
+</html>
